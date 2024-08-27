@@ -5,10 +5,19 @@ import pro.sky.mlfedorov.exceptions.EmployeeAlreadyAddedException;
 import pro.sky.mlfedorov.exceptions.EmployeeNotFoundException;
 import pro.sky.mlfedorov.exceptions.EmployeeStorageIsFullException;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
+    final List<Employee> employees;
+    final int MAX_EMPLOYEES_AMOUNT = 3;
+
+    public EmployeeServiceImpl() {
+        employees = new ArrayList<>();
+    }
+
     public Employee addEmployee(String firstName, String lastName) {
         if (employees.size() == MAX_EMPLOYEES_AMOUNT) {
             throw new EmployeeStorageIsFullException("EmployeeServiceImpl.addEmployee: storage limit exceeded");
@@ -46,8 +55,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         throw new EmployeeNotFoundException("EmployeeServiceImpl.findEmployee: employee not found");
     }
 
-    public List<Employee> getList() {
-        return employees;
+    public List<Employee> findAll() {
+        return Collections.unmodifiableList(employees);
     }
 
     private Employee searchEmployee(String firstName, String lastName) {

@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface EmployeeService {
-    final List<Employee> employees = new ArrayList<>();
-    final int MAX_EMPLOYEES_AMOUNT = 3;
-
     Employee addEmployee(String firstName, String lastName);
 
     Employee removeEmployee(String firstName, String lastName);
@@ -17,5 +14,5 @@ public interface EmployeeService {
         return null;
     }
 
-    List<Employee> getList();
+    List<Employee> findAll();
 }

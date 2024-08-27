@@ -42,6 +42,6 @@ public class EmployeeController {
 
     @GetMapping(path = "/list")
     public List<Employee> list() {
-        return employeeService.getList();
+        return employeeService.findAll();
     }
 }
