@@ -1,4 +1,4 @@
-package pro.sky.mlfedorov.calculator;
+package pro.sky.mlfedorov.sandbox.calculator;
 
 public interface CalculatorService {
     String hello();

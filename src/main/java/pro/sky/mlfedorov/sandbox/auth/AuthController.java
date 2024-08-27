@@ -1,4 +1,4 @@
-package pro.sky.mlfedorov.calculator.auth;
+package pro.sky.mlfedorov.sandbox.auth;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

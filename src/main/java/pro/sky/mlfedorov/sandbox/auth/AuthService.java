@@ -1,4 +1,4 @@
-package pro.sky.mlfedorov.calculator.auth;
+package pro.sky.mlfedorov.sandbox.auth;
 
 public interface AuthService {
     public final String loginRegExp = "[a-zA-Z_0-9]{1,20}";
