@@ -1,4 +1,4 @@
-package pro.sky.mlfedorov.calculator;
+package pro.sky.mlfedorov.sandbox.calculator;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
