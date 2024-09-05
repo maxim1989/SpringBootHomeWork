@@ -5,17 +5,15 @@ import pro.sky.mlfedorov.exceptions.EmployeeAlreadyAddedException;
 import pro.sky.mlfedorov.exceptions.EmployeeNotFoundException;
 import pro.sky.mlfedorov.exceptions.EmployeeStorageIsFullException;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    final List<Employee> employees;
+    final Map<String, Employee> employees;
     final int MAX_EMPLOYEES_AMOUNT = 3;
 
     public EmployeeServiceImpl() {
-        employees = new ArrayList<>();
+        employees = new HashMap<>();
     }
 
     public Employee addEmployee(String firstName, String lastName) {
@@ -28,7 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
 
         final Employee employee = new Employee(firstName, lastName);
-        employees.add(employee);
+        employees.put(firstName + "_" + lastName, employee);
 
         return employee;
     }
@@ -37,7 +35,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         final Employee employee = searchEmployee(firstName, lastName);
 
         if (employee != null) {
-            employees.remove(employee);
+            employees.remove(firstName + "_" + lastName);
         } else {
             throw new EmployeeNotFoundException("EmployeeServiceImpl.removeEmployee: employee not found");
         }
@@ -56,19 +54,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public List<Employee> findAll() {
-        return Collections.unmodifiableList(employees);
+        return Collections.unmodifiableList(new ArrayList<>(employees.values()));
     }
 
     private Employee searchEmployee(String firstName, String lastName) {
-        for (final Employee employee : employees) {
-            if (
-                    employee.getFirstName().equals(firstName)
-                            && employee.getLastName().equals(lastName)
-            ) {
-                return employee;
-            }
-        }
-
-        return null;
+        return employees.getOrDefault(firstName + "_" + lastName, null);
     }
 }
