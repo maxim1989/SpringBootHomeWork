@@ -1,6 +1,7 @@
 package pro.sky.mlfedorov.sandbox.emploees;
 
 import org.springframework.stereotype.Service;
+import pro.sky.mlfedorov.sandbox.db.DbServiceImpl;
 import pro.sky.mlfedorov.exceptions.EmployeeAlreadyAddedException;
 import pro.sky.mlfedorov.exceptions.EmployeeNotFoundException;
 import pro.sky.mlfedorov.exceptions.EmployeeStorageIsFullException;
@@ -9,15 +10,10 @@ import java.util.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    final Map<String, Employee> employees;
     final int MAX_EMPLOYEES_AMOUNT = 3;
 
-    public EmployeeServiceImpl() {
-        employees = new HashMap<>();
-    }
-
-    public Employee addEmployee(String firstName, String lastName) {
-        if (employees.size() == MAX_EMPLOYEES_AMOUNT) {
+    public Employee addEmployee(String firstName, String lastName, Integer department, Double salary) {
+        if (DbServiceImpl.employees.size() == MAX_EMPLOYEES_AMOUNT) {
             throw new EmployeeStorageIsFullException("EmployeeServiceImpl.addEmployee: storage limit exceeded");
         }
 
@@ -25,8 +21,8 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new EmployeeAlreadyAddedException("EmployeeServiceImpl.addEmployee: employee exists");
         }
 
-        final Employee employee = new Employee(firstName, lastName);
-        employees.put(firstName + "_" + lastName, employee);
+        final Employee employee = new Employee(firstName, lastName, department, salary);
+        DbServiceImpl.employees.put(firstName + "_" + lastName, employee);
 
         return employee;
     }
@@ -35,7 +31,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         final Employee employee = searchEmployee(firstName, lastName);
 
         if (employee != null) {
-            employees.remove(firstName + "_" + lastName);
+            DbServiceImpl.employees.remove(firstName + "_" + lastName);
         } else {
             throw new EmployeeNotFoundException("EmployeeServiceImpl.removeEmployee: employee not found");
         }
@@ -54,10 +50,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public List<Employee> findAll() {
-        return Collections.unmodifiableList(new ArrayList<>(employees.values()));
+        return Collections.unmodifiableList(new ArrayList<>(DbServiceImpl.employees.values()));
     }
 
     private Employee searchEmployee(String firstName, String lastName) {
-        return employees.getOrDefault(firstName + "_" + lastName, null);
+        return DbServiceImpl.employees.getOrDefault(firstName + "_" + lastName, null);
     }
 }
