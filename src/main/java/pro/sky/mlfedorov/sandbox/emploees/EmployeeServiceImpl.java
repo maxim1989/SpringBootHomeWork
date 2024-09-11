@@ -1,7 +1,6 @@
 package pro.sky.mlfedorov.sandbox.emploees;
 
 import org.springframework.stereotype.Service;
-import pro.sky.mlfedorov.sandbox.db.DbServiceImpl;
 import pro.sky.mlfedorov.exceptions.EmployeeAlreadyAddedException;
 import pro.sky.mlfedorov.exceptions.EmployeeNotFoundException;
 import pro.sky.mlfedorov.exceptions.EmployeeStorageIsFullException;
@@ -10,10 +9,11 @@ import java.util.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
+    final static Map<String, Employee> employees = new HashMap<>();
     final int MAX_EMPLOYEES_AMOUNT = 3;
 
     public Employee addEmployee(String firstName, String lastName, Integer department, Double salary) {
-        if (DbServiceImpl.employees.size() == MAX_EMPLOYEES_AMOUNT) {
+        if (employees.size() == MAX_EMPLOYEES_AMOUNT) {
             throw new EmployeeStorageIsFullException("EmployeeServiceImpl.addEmployee: storage limit exceeded");
         }
 
@@ -22,7 +22,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
 
         final Employee employee = new Employee(firstName, lastName, department, salary);
-        DbServiceImpl.employees.put(firstName + "_" + lastName, employee);
+        employees.put(firstName + "_" + lastName, employee);
 
         return employee;
     }
@@ -31,7 +31,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         final Employee employee = searchEmployee(firstName, lastName);
 
         if (employee != null) {
-            DbServiceImpl.employees.remove(firstName + "_" + lastName);
+            employees.remove(firstName + "_" + lastName);
         } else {
             throw new EmployeeNotFoundException("EmployeeServiceImpl.removeEmployee: employee not found");
         }
@@ -50,10 +50,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public List<Employee> findAll() {
-        return Collections.unmodifiableList(new ArrayList<>(DbServiceImpl.employees.values()));
+        return List.copyOf(employees.values());
     }
 
     private Employee searchEmployee(String firstName, String lastName) {
-        return DbServiceImpl.employees.getOrDefault(firstName + "_" + lastName, null);
+        return employees.getOrDefault(firstName + "_" + lastName, null);
     }
 }

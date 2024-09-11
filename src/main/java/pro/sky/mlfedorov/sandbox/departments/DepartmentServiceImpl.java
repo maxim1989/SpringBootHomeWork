@@ -1,33 +1,46 @@
 package pro.sky.mlfedorov.sandbox.departments;
 
 import org.springframework.stereotype.Service;
+import pro.sky.mlfedorov.exceptions.EmployeeNotFoundException;
 import pro.sky.mlfedorov.sandbox.emploees.Employee;
+import pro.sky.mlfedorov.sandbox.emploees.EmployeeService;
 
 import java.util.Comparator;
 import java.util.List;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
-    public Employee getEmployeeWithMaxSalary(Integer departmentId, List<Employee> employees) {
-        return employees
-                .stream()
-                .filter(e -> e.getDepartment() == departmentId)
-                .max(Comparator.comparing(Employee::getSalary)).orElseThrow();
+    private final EmployeeService employeeService;
+
+    public DepartmentServiceImpl(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
-    public Employee getEmployeeWithMinSalary(Integer departmentId, List<Employee> employees) {
-        return employees
+    public Employee getEmployeeWithMaxSalary(Integer departmentId) {
+        return employeeService
+                .findAll()
                 .stream()
                 .filter(e -> e.getDepartment() == departmentId)
-                .min(Comparator.comparing(Employee::getSalary)).orElseThrow();
+                .max(Comparator.comparing(Employee::getSalary))
+                .orElseThrow(EmployeeNotFoundException::new);
     }
 
-    public List<Employee> getAllEmployees(Integer departmentId, List<Employee> employees) {
+    public Employee getEmployeeWithMinSalary(Integer departmentId) {
+        return employeeService
+                .findAll()
+                .stream()
+                .filter(e -> e.getDepartment() == departmentId)
+                .min(Comparator.comparing(Employee::getSalary))
+                .orElseThrow(EmployeeNotFoundException::new);
+    }
+
+    public List<Employee> getAllEmployees(Integer departmentId) {
         if (departmentId == null) {
-            return employees;
+            return employeeService.findAll();
         }
 
-        return employees
+        return employeeService
+                .findAll()
                 .stream()
                 .filter(e -> e.getDepartment() == departmentId)
                 .toList();
