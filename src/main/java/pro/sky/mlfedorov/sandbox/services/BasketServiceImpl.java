@@ -1,10 +1,7 @@
 package pro.sky.mlfedorov.sandbox.services;
 
-import org.springframework.context.annotation.Bean;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.annotation.SessionScope;
 import pro.sky.mlfedorov.sandbox.entities.ProductBasket;
 
 import java.util.Collections;
