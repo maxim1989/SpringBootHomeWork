@@ -1,8 +1,9 @@
-package pro.sky.mlfedorov.sandbox.calculator;
+package pro.sky.mlfedorov.sandbox.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import pro.sky.mlfedorov.sandbox.services.CalculatorService;
 
 @RestController
 public class CalculatorController {

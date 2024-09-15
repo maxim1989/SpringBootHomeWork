@@ -1,4 +1,4 @@
-package pro.sky.mlfedorov.sandbox.calculator;
+package pro.sky.mlfedorov.sandbox.services;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

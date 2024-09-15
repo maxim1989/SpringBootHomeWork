@@ -1,4 +1,4 @@
-package pro.sky.mlfedorov.exceptions;
+package pro.sky.mlfedorov.sandbox.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -1,8 +1,8 @@
-package pro.sky.mlfedorov.sandbox.auth;
+package pro.sky.mlfedorov.sandbox.services;
 
 import org.springframework.stereotype.Service;
-import pro.sky.mlfedorov.exceptions.WrongLoginException;
-import pro.sky.mlfedorov.exceptions.WrongPasswordException;
+import pro.sky.mlfedorov.sandbox.exceptions.WrongLoginException;
+import pro.sky.mlfedorov.sandbox.exceptions.WrongPasswordException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
