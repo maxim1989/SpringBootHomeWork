@@ -6,15 +6,21 @@ public class Employee {
     private final int id;
     private final String firstName;
     private final String lastName;
+    private int department;
+    private double salary;
     private static int idCounter;
 
     public Employee(
             String firstName,
-            String lastName
+            String lastName,
+            int department,
+            double salary
     ) {
         this.id = ++idCounter;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.department = department;
+        this.salary = salary;
     }
 
     public int getId() {
@@ -27,6 +33,14 @@ public class Employee {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public int getDepartment() {
+        return department;
+    }
+
+    public double getSalary() {
+        return salary;
     }
 
     @Override
@@ -44,6 +58,22 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "{\"firstName\":" + "\"" + firstName + "\"" + "\"lastName\":" + "\"" + lastName + "\"" + "}";
+        return "{\"firstName\":"
+                + "\""
+                + firstName
+                + "\""
+                + "\"lastName\":"
+                + "\""
+                + lastName
+                + "\""
+                + "\"department\":"
+                + "\""
+                + department
+                + "\""
+                + "\"salary\":"
+                + "\""
+                + salary
+                + "\""
+                + "}";
     }
 }

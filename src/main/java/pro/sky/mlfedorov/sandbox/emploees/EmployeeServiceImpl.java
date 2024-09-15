@@ -9,14 +9,10 @@ import java.util.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    final Map<String, Employee> employees;
+    final static Map<String, Employee> employees = new HashMap<>();
     final int MAX_EMPLOYEES_AMOUNT = 3;
 
-    public EmployeeServiceImpl() {
-        employees = new HashMap<>();
-    }
-
-    public Employee addEmployee(String firstName, String lastName) {
+    public Employee addEmployee(String firstName, String lastName, Integer department, Double salary) {
         if (employees.size() == MAX_EMPLOYEES_AMOUNT) {
             throw new EmployeeStorageIsFullException("EmployeeServiceImpl.addEmployee: storage limit exceeded");
         }
@@ -25,7 +21,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new EmployeeAlreadyAddedException("EmployeeServiceImpl.addEmployee: employee exists");
         }
 
-        final Employee employee = new Employee(firstName, lastName);
+        final Employee employee = new Employee(firstName, lastName, department, salary);
         employees.put(firstName + "_" + lastName, employee);
 
         return employee;
@@ -54,7 +50,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public List<Employee> findAll() {
-        return Collections.unmodifiableList(new ArrayList<>(employees.values()));
+        return List.copyOf(employees.values());
     }
 
     private Employee searchEmployee(String firstName, String lastName) {
