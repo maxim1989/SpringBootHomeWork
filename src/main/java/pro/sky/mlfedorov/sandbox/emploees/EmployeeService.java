@@ -14,4 +14,12 @@ public interface EmployeeService {
     }
 
     List<Employee> findAll();
+
+    private void validateFirstName(String name) {}
+
+    private void validateLastName(String name) {}
+
+    private String modifyString(String value) {
+        return null;
+    }
 }
