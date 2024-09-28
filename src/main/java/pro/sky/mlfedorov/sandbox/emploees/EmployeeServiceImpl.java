@@ -75,11 +75,19 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (StringUtils.isBlank(name) | StringUtils.isEmpty(name)) {
             throw new EmployeeValidationFailed("EmployeeServiceImpl.validateFirstName: name is blank");
         }
+
+        if (!StringUtils.isAlpha(name)) {
+            throw new EmployeeValidationFailed("EmployeeServiceImpl.validateFirstName: name is not alpha");
+        }
     }
 
     private void validateLastName(String name) {
         if (StringUtils.isBlank(name) | StringUtils.isEmpty(name)) {
-            throw new EmployeeValidationFailed("EmployeeServiceImpl.validateFirstName: last name is blank");
+            throw new EmployeeValidationFailed("EmployeeServiceImpl.validateLastName: last name is blank");
+        }
+
+        if (!StringUtils.isAlpha(name)) {
+            throw new EmployeeValidationFailed("EmployeeServiceImpl.validateLastName: name is not alpha");
         }
     }
 
