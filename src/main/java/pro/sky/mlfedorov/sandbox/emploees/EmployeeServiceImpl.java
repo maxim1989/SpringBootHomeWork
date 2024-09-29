@@ -14,6 +14,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     final static Map<String, Employee> employees = new HashMap<>();
     final int MAX_EMPLOYEES_AMOUNT = 3;
 
+    @Override
     public Employee addEmployee(String firstName, String lastName, Integer department, Double salary) {
         validateFirstName(firstName);
         validateLastName(lastName);
@@ -33,6 +34,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employee;
     }
 
+    @Override
     public Employee removeEmployee(String firstName, String lastName) {
         validateFirstName(firstName);
         validateLastName(lastName);
@@ -49,6 +51,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employee;
     }
 
+    @Override
     public Employee findEmployee(String firstName, String lastName) {
         validateFirstName(firstName);
         validateLastName(lastName);
@@ -63,15 +66,18 @@ public class EmployeeServiceImpl implements EmployeeService {
         throw new EmployeeNotFoundException("EmployeeServiceImpl.findEmployee: employee not found");
     }
 
+    @Override
     public List<Employee> findAll() {
         return List.copyOf(employees.values());
     }
 
-    private Employee searchEmployee(String firstName, String lastName) {
+    @Override
+    public Employee searchEmployee(String firstName, String lastName) {
         return employees.getOrDefault(firstName + "_" + lastName, null);
     }
 
-    private void validateFirstName(String name) {
+    @Override
+    public void validateFirstName(String name) {
         if (StringUtils.isBlank(name) | StringUtils.isEmpty(name)) {
             throw new EmployeeValidationFailed("EmployeeServiceImpl.validateFirstName: name is blank");
         }
@@ -81,7 +87,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
     }
 
-    private void validateLastName(String name) {
+    @Override
+    public void validateLastName(String name) {
         if (StringUtils.isBlank(name) | StringUtils.isEmpty(name)) {
             throw new EmployeeValidationFailed("EmployeeServiceImpl.validateLastName: last name is blank");
         }
@@ -91,7 +98,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
     }
 
-    private String modifyString(String value) {
+    @Override
+    public String modifyString(String value) {
         String newValue = StringUtils.trim(value);
         newValue = StringUtils.strip(newValue);
         String firstLetter = StringUtils.substring(newValue, 0, 1);

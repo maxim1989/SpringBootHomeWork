@@ -9,17 +9,13 @@ public interface EmployeeService {
 
     Employee findEmployee(String firstName, String lastName);
 
-    private Employee searchEmployee(String firstName, String lastName) {
-        return null;
-    }
-
     List<Employee> findAll();
 
-    private void validateFirstName(String name) {}
+    Employee searchEmployee(String firstName, String lastName);
 
-    private void validateLastName(String name) {}
+    void validateFirstName(String name);
 
-    private String modifyString(String value) {
-        return null;
-    }
+    void validateLastName(String name);
+
+    String modifyString(String value);
 }
