@@ -1,9 +1,10 @@
-package pro.sky.mlfedorov.sandbox.emploees;
+package pro.sky.mlfedorov.sandbox.services;
 
 import org.springframework.stereotype.Service;
-import pro.sky.mlfedorov.exceptions.EmployeeAlreadyAddedException;
-import pro.sky.mlfedorov.exceptions.EmployeeNotFoundException;
-import pro.sky.mlfedorov.exceptions.EmployeeStorageIsFullException;
+import pro.sky.mlfedorov.sandbox.exceptions.EmployeeAlreadyAddedException;
+import pro.sky.mlfedorov.sandbox.exceptions.EmployeeNotFoundException;
+import pro.sky.mlfedorov.sandbox.exceptions.EmployeeStorageIsFullException;
+import pro.sky.mlfedorov.sandbox.entities.Employee;
 
 import java.util.*;
 

@@ -1,6 +1,6 @@
-package pro.sky.mlfedorov.sandbox.departments;
+package pro.sky.mlfedorov.sandbox.services;
 
-import pro.sky.mlfedorov.sandbox.emploees.Employee;
+import pro.sky.mlfedorov.sandbox.entities.Employee;
 
 import java.util.List;
 

@@ -1,9 +1,8 @@
-package pro.sky.mlfedorov.sandbox.departments;
+package pro.sky.mlfedorov.sandbox.services;
 
 import org.springframework.stereotype.Service;
-import pro.sky.mlfedorov.exceptions.EmployeeNotFoundException;
-import pro.sky.mlfedorov.sandbox.emploees.Employee;
-import pro.sky.mlfedorov.sandbox.emploees.EmployeeService;
+import pro.sky.mlfedorov.sandbox.exceptions.EmployeeNotFoundException;
+import pro.sky.mlfedorov.sandbox.entities.Employee;
 
 import java.util.Comparator;
 import java.util.List;

@@ -1,4 +1,4 @@
-package pro.sky.mlfedorov.sandbox.emploees;
+package pro.sky.mlfedorov.sandbox.entities;
 
 import java.util.Objects;
 
