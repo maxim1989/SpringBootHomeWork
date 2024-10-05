@@ -9,9 +9,13 @@ public interface EmployeeService {
 
     Employee findEmployee(String firstName, String lastName);
 
-    private Employee searchEmployee(String firstName, String lastName) {
-        return null;
-    }
-
     List<Employee> findAll();
+
+    Employee searchEmployee(String firstName, String lastName);
+
+    void validateFirstName(String name);
+
+    void validateLastName(String name);
+
+    String modifyString(String value);
 }
