@@ -37,7 +37,7 @@ public class CalculatorServiceImpl implements CalculatorService {
     public double divide(Integer num1, Integer num2) {
         paramsRequired(num1, num2);
         if (num2 == 0) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Деление на 0 запрещено");
+            throw new IllegalArgumentException("Деление на 0 запрещено");
         }
         return (double) num1 / num2;
     }
