@@ -103,7 +103,7 @@ public class CalculatorServiceImplTest {
     public void multiplyShouldReturnOneAndHalf() {
         Double result = out.divide(3, 2);
 
-        assertEquals(1.5d, result);
+        assertEquals(1.5, result);
     }
 
     @Test
