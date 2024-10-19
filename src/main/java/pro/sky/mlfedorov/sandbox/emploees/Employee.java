@@ -6,8 +6,8 @@ public class Employee {
     private final int id;
     private final String firstName;
     private final String lastName;
-    private int department;
-    private double salary;
+    private final int department;
+    private final double salary;
     private static int idCounter;
 
     public Employee(
