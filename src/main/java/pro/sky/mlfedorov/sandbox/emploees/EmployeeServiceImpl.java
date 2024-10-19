@@ -11,7 +11,7 @@ import java.util.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    final static Map<String, Employee> employees = new HashMap<>();
+    public static Map<String, Employee> employees = new HashMap<>();
     final int MAX_EMPLOYEES_AMOUNT = 3;
 
     @Override
